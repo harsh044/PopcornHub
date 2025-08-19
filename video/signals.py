@@ -3,14 +3,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from video.models import Video
-# from pytube import YouTube
 import yt_dlp
+from urllib.parse import urlparse, parse_qs
 
 @receiver(post_save, sender=Video)
 def video_post_save(sender, instance, created, **kwargs):
     if created:
         video_path = instance.file_path
-        get_video_id = video_path.split(".be/")[1]
+        # get_video_id = video_path.split(".be/")[1]
+        url_data = urlparse(video_path)
+        if "youtu.be" in url_data.netloc:
+            get_video_id = url_data.path.strip("/")
         
         ydl_opts = {}
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
