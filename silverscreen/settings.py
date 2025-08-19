@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-@dnh9h-_p^v7%^1g15)^m9nn&0%hslrs__4aez()rlgy+nf86$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://silverscreen-5hx0.onrender.com']
 
 
 # Application definition
@@ -127,3 +127,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CSRF_TRUSTED_ORIGINS = [
+    "https://silverscreen-5hx0.onrender.com",
+]
